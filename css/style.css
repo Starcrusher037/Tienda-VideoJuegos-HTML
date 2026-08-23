@@ -1,0 +1,208 @@
+/* ==========================================
+   1. BASE Y ESTRUCTURA GLOBAL
+   ========================================== */
+:root {
+    --bg-principal: #0d0f12;
+    --bg-tarjeta: #1e2229;
+    --verde-neon: #00ff66;
+    --plata: #e0e6ed;
+    --plata-oscuro: #8b949e;
+    --borde-plata: #30363d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--plata);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh; /*altura minima, el 100% del viewport "pantalla del usuario"*/
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   2. ENCABEZADO Y NAVEGACIÓN
+   ========================================== */
+header {
+    background-color: var(--bg-tarjeta);
+    padding: 2rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--borde-plata);
+    margin:1rem ;
+    border-radius: 12px;
+}
+
+header h1 {
+    line-height: 1;
+    color: var(--verde-neon);
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(0, 255, 102, 0.4);
+}
+
+header p {
+    color: var(--plata);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+nav ul {
+    margin: 0 auto;
+    width: fit-content;
+    border-radius: 20px;
+    list-style: none;
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    background-color: var(--bg-principal);
+    border: 1px solid var(--borde-plata);
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--plata-oscuro);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.45rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--verde-neon);
+    color: #000;
+    box-shadow: 0 0 8px var(--verde-neon);
+}
+
+/* ==========================================
+   3. SECCIÓN PRINCIPAL (Ampliada a pantalla completa)
+   ========================================== */
+main {
+    flex: 1; /* Empuja el footer hacia el fondo si hay poco contenido */
+    width: 95%;
+    max-width: 1600px; 
+    margin: 2rem auto;
+}
+
+#productos {
+    width: 100%;
+    padding: 2.5rem;
+    background-color: var(--bg-tarjeta);
+    border-radius: 12px;
+    border: 1px solid var(--borde-plata);
+}
+
+#productos h2 {
+    color: var(--plata);
+    font-size: 2.1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Grilla de productos en 4 columnas amplias */
+#productos > ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Selector de clase (.) para destacar un producto especial */
+.producto-destacado {
+    border: 2px solid var(--plata);
+    border-radius:8px;
+    box-shadow: 0 0 15px rgb(255, 0, 0);
+}
+
+/* Selector avanzado (:nth-child) para alternar o destacar elementos */
+#productos > ul > li:nth-child(1) {
+    position: relative;
+}
+
+#productos li {
+    background-color: var(--bg-principal);
+    border: 1px solid var(--borde-plata);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+#productos li:hover {
+    transform: translateY(-5px);
+    border-color: var(--verde-neon);
+    box-shadow: 0 5px 15px rgba(0, 255, 102, 0.1);
+}
+
+#productos h3 {
+    color: var(--verde-neon);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* Ajuste de imágenes para que se vean completas y nítidas */
+#productos img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; /* Muestra la imagen entera sin recortarla */
+    background-color: #050607; /* Fondo oscuro para el marco de las fotos */
+    border-radius: 6px;
+    margin-bottom:  1rem;
+    padding: 1.1rem;
+    border: 1px solid var(--borde-plata);
+}
+
+#productos p {
+    color: var(--plata-oscuro);
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   4. PIE DE PÁGINA (Pegado al fondo)
+   ========================================== */
+footer {
+    background-color: var(--bg-tarjeta);
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--plata-oscuro);
+    font-size: 0.95rem;
+    border-top: 1px solid var(--borde-plata);
+    width: 100%;
+}
+
+#contacto ul {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 1rem 0;
+}
+
+#contacto a {
+    color: var(--verde-neon);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#contacto a:hover {
+    text-decoration: underline;
+}
+
+/* Aplica un color especial al último elemento del footer */
+footer p:last-child {
+    color: rgb(11, 161, 206);
+    font-weight: bold;
+}
