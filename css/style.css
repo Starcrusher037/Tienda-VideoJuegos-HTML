@@ -9,6 +9,13 @@
     --plata: #e0e6ed;
     --plata-oscuro: #8b949e;
     --borde-plata: #30363d;
+    --resaltador-pagina-aqua: aqua;
+    --titulo-vmovil: yellow;
+    --negro-absoluto: #000;
+    --rojo-destacado: rgb(255, 0, 0);
+    --bg-imagen: #050607;
+    --sombra-verde: rgba(0, 255, 102, 0.4);
+    --sombra-verde-suave: rgba(0, 255, 102, 0.1);
 
     /* Espaciados (Padding) */
     --padding-xs: 0.45rem;
@@ -34,7 +41,7 @@
     --radius-pill: 20px;
 }
 
-/*Seteo de estilos base*/
+/* SETEO DE ESTILO BASE */
 * {
     margin: 0;
     padding: 0;
@@ -49,6 +56,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* ==========================================
@@ -69,7 +77,7 @@ header h1 {
     font-size: 2.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 0 12px rgba(0, 255, 102, 0.4);
+    text-shadow: 0 0 12px var(--sombra-verde);
 }
 
 header p {
@@ -103,7 +111,7 @@ nav a {
 
 nav a:hover {
     background-color: var(--verde-neon);
-    color: #000;
+    color: var(--negro-absoluto);
     box-shadow: 0 0 8px var(--verde-neon);
 }
 
@@ -112,9 +120,10 @@ nav a:hover {
    ========================================== */
 main {
     flex: 1;
-    width: 95%;
-    max-width: 1600px; 
-    margin: var(--margin-xl) auto;
+    width: 100%;
+    max-width: 1400px; 
+    margin: var(--margin-md) auto;
+    padding: 0 var(--padding-md);
 }
 
 #productos {
@@ -138,14 +147,14 @@ main {
 #productos > ul {
     list-style: none;
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1.5rem;
 }
 
 .producto-destacado {
     border: var(--border-highlight);
     border-radius: var(--radius-lg);
-    box-shadow: 0 0 15px rgb(255, 0, 0);
+    box-shadow: 0 0 15px var(--rojo-destacado);
 }
 
 #productos > ul > li:nth-child(1) {
@@ -167,7 +176,7 @@ main {
 #productos li:hover {
     transform: translateY(-5px);
     border-color: var(--verde-neon);
-    box-shadow: 0 5px 15px rgba(0, 255, 102, 0.1);
+    box-shadow: 0 5px 15px var(--sombra-verde-suave);
 }
 
 #productos h3 {
@@ -180,7 +189,7 @@ main {
     width: 100%;
     height: 200px;
     object-fit: contain;
-    background-color: #050607;
+    background-color: var(--bg-imagen);
     border-radius: var(--radius-md);
     margin-bottom: var(--margin-md);
     padding: 1.1rem;
@@ -224,7 +233,7 @@ footer {
 }
 
 footer p:last-child {
-    color: rgb(11, 161, 206);
+    color: var(--resaltador-pagina-aqua);
     font-weight: bold;
 }
 
@@ -232,10 +241,20 @@ footer p:last-child {
    5. DISEÑO RESPONSIVO (MEDIA QUERIES)
    ========================================== */
 
-/* Dispositivos Medianos: Tabletas (Máximo 768px) */
+/* Tabletas (Pantallas entre 481px y 768px) */
 @media (max-width: 768px) {
+    header {
+        margin: var(--margin-sm);
+        padding: var(--padding-md);
+    }
+
     header h1 {
         font-size: 2rem;
+        color: var(--resaltador-pagina-aqua);
+    }
+
+    main {
+        padding: 0 var(--padding-sm);
     }
 
     #productos {
@@ -246,25 +265,21 @@ footer p:last-child {
         font-size: 1.6rem;
     }
 
-    /* La grilla pasa a mostrar máximo 2 columnas */
+    /* Grilla a 2 columnas */
     #productos > ul {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 }
 
-/* Dispositivos Pequeños: Móviles (Máximo 480px) */
+/* Móviles (Pantallas de 480px o menos) */
 @media (max-width: 480px) {
-    header {
-        margin: var(--margin-sm);
-        padding: var(--padding-md);
-    }
-
     header h1 {
         font-size: 1.5rem;
+        color: var(--titulo-vmovil);
     }
 
-    /* El menú pasa a disposición vertical para pantallas estrechas */
+    /* El menú pasa a formato vertical */
     nav ul {
         flex-direction: column;
         width: 100%;
@@ -276,7 +291,7 @@ footer p:last-child {
         text-align: center;
     }
 
-    /* La grilla pasa a 1 sola columna */
+    /* Grilla a 1 sola columna */
     #productos > ul {
         grid-template-columns: 1fr;
     }
