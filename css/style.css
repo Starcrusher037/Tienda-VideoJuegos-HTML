@@ -2,14 +2,39 @@
    1. BASE Y ESTRUCTURA GLOBAL
    ========================================== */
 :root {
+    /* Colores */
     --bg-principal: #0d0f12;
     --bg-tarjeta: #1e2229;
     --verde-neon: #00ff66;
     --plata: #e0e6ed;
     --plata-oscuro: #8b949e;
     --borde-plata: #30363d;
+
+    /* Espaciados (Padding) */
+    --padding-xs: 0.45rem;
+    --padding-sm: 0.5rem;
+    --padding-md: 1rem;
+    --padding-lg: 1.5rem;
+    --padding-xl: 2rem;
+    --padding-2xl: 2.5rem;
+
+    /* Márgenes */
+    --margin-sm: 0.5rem;
+    --margin-md: 1rem;
+    --margin-lg: 1.5rem;
+    --margin-xl: 2rem;
+
+    /* Bordes y Esquinas */
+    --border-thin: 1px solid var(--borde-plata);
+    --border-highlight: 2px solid var(--plata);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-pill: 20px;
 }
 
+/*Seteo de estilos base*/
 * {
     margin: 0;
     padding: 0;
@@ -21,21 +46,21 @@ body {
     color: var(--plata);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    min-height: 100vh; /*altura minima, el 100% del viewport "pantalla del usuario"*/
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 /* ==========================================
-   2. ENCABEZADO Y NAVEGACIÓN
+   2. ENCABEZADO Y NAVEGACIÓN (Flexbox)
    ========================================== */
 header {
     background-color: var(--bg-tarjeta);
-    padding: 2rem 1rem;
+    padding: var(--padding-xl) var(--padding-md);
     text-align: center;
-    border-bottom: 1px solid var(--borde-plata);
-    margin:1rem ;
-    border-radius: 12px;
+    border-bottom: var(--border-thin);
+    margin: var(--margin-md);
+    border-radius: var(--radius-xl);
 }
 
 header h1 {
@@ -49,21 +74,21 @@ header h1 {
 
 header p {
     color: var(--plata);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--margin-lg);
     font-size: 1.1rem;
 }
 
 nav ul {
     margin: 0 auto;
     width: fit-content;
-    border-radius: 20px;
+    border-radius: var(--radius-pill);
     list-style: none;
-    padding: 0.5rem 1.25rem;
-    display: flex;
+    padding: var(--padding-sm) 1.25rem;
+    display: flex; /* Flexbox para alineación horizontal */
     justify-content: center;
     gap: 1rem;
     background-color: var(--bg-principal);
-    border: 1px solid var(--borde-plata);
+    border: var(--border-thin);
 }
 
 nav a {
@@ -71,8 +96,8 @@ nav a {
     color: var(--plata-oscuro);
     font-size: 1rem;
     font-weight: bold;
-    padding: 0.45rem 1rem;
-    border-radius: 4px;
+    padding: var(--padding-xs) var(--padding-md);
+    border-radius: var(--radius-sm);
     transition: all 0.3s ease;
 }
 
@@ -83,57 +108,55 @@ nav a:hover {
 }
 
 /* ==========================================
-   3. SECCIÓN PRINCIPAL (Ampliada a pantalla completa)
+   3. SECCIÓN PRINCIPAL Y PRODUCTOS (CSS Grid)
    ========================================== */
 main {
-    flex: 1; /* Empuja el footer hacia el fondo si hay poco contenido */
+    flex: 1;
     width: 95%;
     max-width: 1600px; 
-    margin: 2rem auto;
+    margin: var(--margin-xl) auto;
 }
 
 #productos {
     width: 100%;
-    padding: 2.5rem;
+    padding: var(--padding-2xl);
     background-color: var(--bg-tarjeta);
-    border-radius: 12px;
-    border: 1px solid var(--borde-plata);
+    border-radius: var(--radius-xl);
+    border: var(--border-thin);
 }
 
 #productos h2 {
     color: var(--plata);
     font-size: 2.1rem;
-    margin-bottom: 2rem;
+    margin-bottom: var(--margin-xl);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Grilla de productos en 4 columnas amplias */
+/* Grilla de productos con CSS Grid */
 #productos > ul {
     list-style: none;
-    display: grid;
+    display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
-/* Selector de clase (.) para destacar un producto especial */
 .producto-destacado {
-    border: 2px solid var(--plata);
-    border-radius:8px;
+    border: var(--border-highlight);
+    border-radius: var(--radius-lg);
     box-shadow: 0 0 15px rgb(255, 0, 0);
 }
 
-/* Selector avanzado (:nth-child) para alternar o destacar elementos */
 #productos > ul > li:nth-child(1) {
     position: relative;
 }
 
 #productos li {
     background-color: var(--bg-principal);
-    border: 1px solid var(--borde-plata);
-    border-radius: 8px;
-    padding: 1.5rem;
+    border: var(--border-thin);
+    border-radius: var(--radius-lg);
+    padding: var(--padding-lg);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -153,16 +176,15 @@ main {
     font-size: 1.2rem;
 }
 
-/* Ajuste de imágenes para que se vean completas y nítidas */
 #productos img {
     width: 100%;
     height: 200px;
-    object-fit: contain; /* Muestra la imagen entera sin recortarla */
-    background-color: #050607; /* Fondo oscuro para el marco de las fotos */
-    border-radius: 6px;
-    margin-bottom:  1rem;
+    object-fit: contain;
+    background-color: #050607;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--margin-md);
     padding: 1.1rem;
-    border: 1px solid var(--borde-plata);
+    border: var(--border-thin);
 }
 
 #productos p {
@@ -171,24 +193,24 @@ main {
 }
 
 /* ==========================================
-   4. PIE DE PÁGINA (Pegado al fondo)
+   4. PIE DE PÁGINA (Flexbox)
    ========================================== */
 footer {
     background-color: var(--bg-tarjeta);
-    padding: 2rem 1rem;
+    padding: var(--padding-xl) var(--padding-md);
     text-align: center;
     color: var(--plata-oscuro);
     font-size: 0.95rem;
-    border-top: 1px solid var(--borde-plata);
+    border-top: var(--border-thin);
     width: 100%;
 }
 
 #contacto ul {
-    display: flex;
+    display: flex; /* Flexbox */
     justify-content: center;
     gap: 1.25rem;
     list-style: none;
-    margin: 1rem 0;
+    margin: var(--margin-md) 0;
 }
 
 #contacto a {
@@ -201,8 +223,66 @@ footer {
     text-decoration: underline;
 }
 
-/* Aplica un color especial al último elemento del footer */
 footer p:last-child {
     color: rgb(11, 161, 206);
     font-weight: bold;
+}
+
+/* ==========================================
+   5. DISEÑO RESPONSIVO (MEDIA QUERIES)
+   ========================================== */
+
+/* Dispositivos Medianos: Tabletas (Máximo 768px) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    #productos {
+        padding: var(--padding-lg);
+    }
+
+    #productos h2 {
+        font-size: 1.6rem;
+    }
+
+    /* La grilla pasa a mostrar máximo 2 columnas */
+    #productos > ul {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Dispositivos Pequeños: Móviles (Máximo 480px) */
+@media (max-width: 480px) {
+    header {
+        margin: var(--margin-sm);
+        padding: var(--padding-md);
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    /* El menú pasa a disposición vertical para pantallas estrechas */
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--margin-sm);
+    }
+
+    nav a {
+        display: block;
+        text-align: center;
+    }
+
+    /* La grilla pasa a 1 sola columna */
+    #productos > ul {
+        grid-template-columns: 1fr;
+    }
+
+    #contacto ul {
+        flex-direction: column;
+        gap: var(--margin-sm);
+    }
 }
