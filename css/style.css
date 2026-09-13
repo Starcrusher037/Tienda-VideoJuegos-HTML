@@ -1,35 +1,23 @@
 /* ==========================================
-   1. BASE Y ESTRUCTURA GLOBAL
+   1. VARIABLES GLOBALES Y TEMA
    ========================================== */
 :root {
-    /* Colores */
+    /* Paleta de Colores Cyberpunk / Gamer */
     --bg-principal: #0d0f12;
     --bg-tarjeta: #1e2229;
+    --bg-navbar: rgba(30, 34, 41, 0.95);
     --verde-neon: #00ff66;
+    --verde-neon-hover: #00cc52;
     --plata: #e0e6ed;
     --plata-oscuro: #8b949e;
     --borde-plata: #30363d;
     --resaltador-pagina-aqua: aqua;
     --titulo-vmovil: yellow;
     --negro-absoluto: #000;
-    --rojo-destacado: rgb(255, 0, 0);
+    --rojo-destacado: #ff3333;
     --bg-imagen: #050607;
     --sombra-verde: rgba(0, 255, 102, 0.4);
-    --sombra-verde-suave: rgba(0, 255, 102, 0.1);
-
-    /* Espaciados (Padding) */
-    --padding-xs: 0.45rem;
-    --padding-sm: 0.5rem;
-    --padding-md: 1rem;
-    --padding-lg: 1.5rem;
-    --padding-xl: 2rem;
-    --padding-2xl: 2.5rem;
-
-    /* Márgenes */
-    --margin-sm: 0.5rem;
-    --margin-md: 1rem;
-    --margin-lg: 1.5rem;
-    --margin-xl: 2rem;
+    --sombra-verde-suave: rgba(0, 255, 102, 0.15);
 
     /* Bordes y Esquinas */
     --border-thin: 1px solid var(--borde-plata);
@@ -38,16 +26,11 @@
     --radius-md: 6px;
     --radius-lg: 8px;
     --radius-xl: 12px;
-    --radius-pill: 20px;
 }
 
-/* SETEO DE ESTILO BASE */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* ==========================================
+   2. ESTILO BASE DEL DOCUMENTO
+   ========================================== */
 body {
     background-color: var(--bg-principal);
     color: var(--plata);
@@ -59,245 +42,223 @@ body {
     overflow-x: hidden;
 }
 
+/* Utilidad para color de texto neón */
+.text-neon {
+    color: var(--verde-neon) !important;
+}
+
 /* ==========================================
-   2. ENCABEZADO Y NAVEGACIÓN (Flexbox)
+   3. ENCABEZADO Y NAVBAR RESPONSIVA
    ========================================== */
-header {
-    background-color: var(--bg-tarjeta);
-    padding: var(--padding-xl) var(--padding-md);
-    text-align: center;
+.custom-navbar {
+    background-color: var(--bg-navbar) !important;
+    backdrop-filter: blur(8px);
     border-bottom: var(--border-thin);
-    margin: var(--margin-md);
-    border-radius: var(--radius-xl);
 }
 
-header h1 {
-    line-height: 1;
-    color: var(--verde-neon);
-    font-size: 2.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 12px var(--sombra-verde);
+.brand-logo {
+    color: var(--verde-neon) !important;
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 8px var(--sombra-verde);
+    transition: transform 0.3s ease;
 }
 
-header p {
-    color: var(--plata);
-    margin-bottom: var(--margin-lg);
-    font-size: 1.1rem;
+.brand-logo:hover {
+    transform: scale(1.03);
 }
 
-nav ul {
-    margin: 0 auto;
-    width: fit-content;
-    border-radius: var(--radius-pill);
-    list-style: none;
-    padding: var(--padding-sm) 1.25rem;
-    display: flex; /* Flexbox para alineación horizontal */
-    justify-content: center;
-    gap: 1rem;
-    background-color: var(--bg-principal);
-    border: var(--border-thin);
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--plata-oscuro);
-    font-size: 1rem;
-    font-weight: bold;
-    padding: var(--padding-xs) var(--padding-md);
+.custom-navbar .nav-link {
+    color: var(--plata-oscuro) !important;
+    font-weight: 600;
+    padding: 0.5rem 1rem !important;
     border-radius: var(--radius-sm);
     transition: all 0.3s ease;
 }
 
-nav a:hover {
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+    color: var(--negro-absoluto) !important;
     background-color: var(--verde-neon);
-    color: var(--negro-absoluto);
+    box-shadow: 0 0 10px var(--sombra-verde);
+}
+
+.navbar-toggler {
+    border-color: var(--verde-neon) !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem var(--sombra-verde);
+}
+
+.hero-banner {
+    background-color: var(--bg-tarjeta);
+    border-bottom: var(--border-thin);
+}
+
+.hero-banner h1 {
+    letter-spacing: 2px;
+    text-shadow: 0 0 14px var(--sombra-verde);
+}
+
+/* ==========================================
+   4. CARRUSEL DE IMÁGENES (BOOTSTRAP 5)
+   ========================================== */
+#carruselVideojuegos {
+    border: var(--border-thin);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-img {
+    height: 400px;
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+
+.carousel-caption {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    bottom: 2rem;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: var(--verde-neon);
+    height: 4px;
+    border-radius: 2px;
+}
+
+/* ==========================================
+   5. SECCIÓN DE PRODUCTOS (GRID Y TARJETAS)
+   ========================================== */
+.section-wrapper {
+    background-color: var(--bg-tarjeta);
+    border: var(--border-thin);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.section-title {
+    color: var(--plata);
+    letter-spacing: 1.5px;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--verde-neon);
+    border-radius: 2px;
     box-shadow: 0 0 8px var(--verde-neon);
 }
 
-/* ==========================================
-   3. SECCIÓN PRINCIPAL Y PRODUCTOS (CSS Grid)
-   ========================================== */
-main {
-    flex: 1;
-    width: 100%;
-    max-width: 1400px; 
-    margin: var(--margin-md) auto;
-    padding: 0 var(--padding-md);
+/* Tarjetas de Producto */
+.product-card {
+    background-color: var(--bg-principal) !important;
+    border: var(--border-thin) !important;
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#productos {
-    width: 100%;
-    padding: var(--padding-2xl);
-    background-color: var(--bg-tarjeta);
-    border-radius: var(--radius-xl);
-    border: var(--border-thin);
+.product-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--verde-neon) !important;
+    box-shadow: 0 8px 20px var(--sombra-verde-suave);
 }
 
-#productos h2 {
-    color: var(--plata);
-    font-size: 2.1rem;
-    margin-bottom: var(--margin-xl);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Grilla de productos con CSS Grid */
-#productos > ul {
-    list-style: none;
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
-}
-
-.producto-destacado {
-    border: var(--border-highlight);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 0 15px var(--rojo-destacado);
-}
-
-#productos > ul > li:nth-child(1) {
-    position: relative;
-}
-
-#productos li {
-    background-color: var(--bg-principal);
-    border: var(--border-thin);
-    border-radius: var(--radius-lg);
-    padding: var(--padding-lg);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-#productos li:hover {
-    transform: translateY(-5px);
-    border-color: var(--verde-neon);
-    box-shadow: 0 5px 15px var(--sombra-verde-suave);
-}
-
-#productos h3 {
-    color: var(--verde-neon);
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
-#productos img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
+.card-img-wrapper {
     background-color: var(--bg-imagen);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--margin-md);
-    padding: 1.1rem;
-    border: var(--border-thin);
+    border-bottom: var(--border-thin);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
 }
 
-#productos p {
-    color: var(--plata-oscuro);
-    font-size: 0.95rem;
+.card-img-top {
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.featured-product {
+    border: var(--border-highlight) !important;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+}
+
+/* Botones con estilo gamer */
+.btn-outline-neon {
+    color: var(--verde-neon);
+    border-color: var(--verde-neon);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-neon:hover {
+    background-color: var(--verde-neon);
+    color: var(--negro-absoluto);
+    box-shadow: 0 0 12px var(--verde-neon);
+}
+
+.btn-neon {
+    background-color: var(--verde-neon);
+    color: var(--negro-absoluto);
+    font-weight: 700;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+    background-color: var(--verde-neon-hover);
+    color: var(--negro-absoluto);
+    box-shadow: 0 0 15px var(--verde-neon);
 }
 
 /* ==========================================
-   4. PIE DE PÁGINA (Flexbox)
+   6. PIE DE PÁGINA (FOOTER)
    ========================================== */
-footer {
+.custom-footer {
     background-color: var(--bg-tarjeta);
-    padding: var(--padding-xl) var(--padding-md);
-    text-align: center;
+    border-top: var(--border-thin);
     color: var(--plata-oscuro);
     font-size: 0.95rem;
-    border-top: var(--border-thin);
-    width: 100%;
 }
 
-#contacto ul {
-    display: flex; /* Flexbox */
-    justify-content: center;
-    gap: 1.25rem;
-    list-style: none;
-    margin: var(--margin-md) 0;
-}
-
-#contacto a {
+.social-link {
     color: var(--verde-neon);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
-#contacto a:hover {
+.social-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px var(--verde-neon);
     text-decoration: underline;
 }
 
-footer p:last-child {
+.copyright-text {
     color: var(--resaltador-pagina-aqua);
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* ==========================================
-   5. DISEÑO RESPONSIVO (MEDIA QUERIES)
+   7. AJUSTES RESPONSIVOS COMPLEMENTARIOS
    ========================================== */
-
-/* Tabletas (Pantallas entre 481px y 768px) */
 @media (max-width: 768px) {
-    header {
-        margin: var(--margin-sm);
-        padding: var(--padding-md);
+    .carousel-img {
+        height: 250px;
     }
 
-    header h1 {
-        font-size: 2rem;
-        color: var(--resaltador-pagina-aqua);
-    }
-
-    main {
-        padding: 0 var(--padding-sm);
-    }
-
-    #productos {
-        padding: var(--padding-lg);
-    }
-
-    #productos h2 {
-        font-size: 1.6rem;
-    }
-
-    /* Grilla a 2 columnas */
-    #productos > ul {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-}
-
-/* Móviles (Pantallas de 480px o menos) */
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-        color: var(--titulo-vmovil);
-    }
-
-    /* El menú pasa a formato vertical */
-    nav ul {
-        flex-direction: column;
-        width: 100%;
-        gap: var(--margin-sm);
-    }
-
-    nav a {
-        display: block;
-        text-align: center;
-    }
-
-    /* Grilla a 1 sola columna */
-    #productos > ul {
-        grid-template-columns: 1fr;
-    }
-
-    #contacto ul {
-        flex-direction: column;
-        gap: var(--margin-sm);
+    .hero-banner h1 {
+        font-size: 1.8rem;
     }
 }

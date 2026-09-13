@@ -4,69 +4,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos'Duty - Tienda de Videojuegos</title>
-    <link rel=stylesheet href="css/style.css">
+    <title>Carlos's Duty - Tienda de Videojuegos</title>
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons (Opcional para mejorar la interfaz visual) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <header>
-        <h1> Carlos's Duty</h1>
-        <p>Tu tienda especializada en videojuegos, consolas y accesorios al mejor precio.</p>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+
+    <!-- ==========================================
+         1. BARRA DE NAVEGACIÓN (NAVBAR RESPONSIVA)
+         ========================================== -->
+    <header id="inicio">
+        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+            <div class="container">
+                <!-- Marca / Logo -->
+                <a class="navbar-brand text-uppercase fw-bold brand-logo" href="#inicio">
+                    <i class="bi bi-controller me-2 text-neon"></i>Carlos's Duty
+                </a>
+
+                <!-- Botón hamburguesa para dispositivos móviles -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavegacion" aria-controls="navbarNavegacion" aria-expanded="false"
+                    aria-label="Abrir menú de navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Enlaces del menú colapsable -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavegacion">
+                    <ul class="navbar-nav mb-2 mb-lg-0 gap-lg-2">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#carrusel-promos">Novedades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#productos">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
+
+        <!-- Banner de bienvenida / Presentación -->
+        <div class="hero-banner text-center py-4 px-3">
+            <div class="container">
+                <h1 class="display-5 fw-bold text-neon mb-2">Carlos's Duty</h1>
+                <p class="lead text-light mb-0">Tu tienda especializada en videojuegos, consolas y accesorios al mejor precio.</p>
+            </div>
+        </div>
     </header>
 
     <main>
-        <section id="productos">
-            <h2>Productos destacados</h2>
-            <ul>
-                <li>
-                    <h3>Consola PlayStation 5</h3>
-                    <span class="etiqueta-oferta">¡OFERTA!</span>
-                    <img src="https://images.unsplash.com/photo-1679813553141-5621567f95e8?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Consola PlayStation 5" width="75">
-                    <p>Consola de última generación con soporte para resolución 4K.</p>
-                </li>
-                <li>
-                    <h3>Xbox Series X</h3>
-                    <img src="https://images.unsplash.com/photo-1683823362932-6f7599661d22?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Consola Xbox Series X" width="75">
-                    <p>La consola más potente de Microsoft.</p>
-                </li>
-                <li>
-                    <h3>Nintendo Switch OLED</h3>
-                    <img src="https://images.unsplash.com/photo-1612036781124-847f8939b154?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Consola nintendo switch Oled" width="75">
-                    <p>Consola híbrida con pantalla OLED de 7 pulgadas.</p>
-                </li>
-                <li>
-                    <h3 class="producto-destacado">Protesis Magic Hands ProPlay</h3>
-                    <img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Protesis mano antimancos" width="75">
-                    <p>Protesis avanzadas para un rendimiento excepcional en el juego.
-                    </p>
-                </li>
-            </ul>
+        <!-- ==========================================
+             2. CARRUSEL DE IMÁGENES (CAROUSEL BOOTSTRAP 5)
+             Transición automática cada 3 segundos (3000 ms)
+             ========================================== -->
+        <section id="carrusel-promos" class="container my-4">
+            <div id="carruselVideojuegos" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden"
+                data-bs-ride="carousel">
+                <!-- Indicadores inferiores -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carruselVideojuegos" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Promoción 1"></button>
+                    <button type="button" data-bs-target="#carruselVideojuegos" data-bs-slide-to="1"
+                        aria-label="Promoción 2"></button>
+                    <button type="button" data-bs-target="#carruselVideojuegos" data-bs-slide-to="2"
+                        aria-label="Promoción 3"></button>
+                </div>
+
+                <!-- Diapositivas (Slides) configuradas con data-bs-interval="3000" -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=1200&auto=format&fit=crop"
+                            class="d-block w-100 carousel-img" alt="PlayStation 5 y mandos DualSense">
+                        <div class="carousel-caption d-block bg-dark bg-opacity-75 rounded-3 p-3">
+                            <h3 class="fw-bold text-neon">PlayStation 5 en Oferta</h3>
+                            <p class="d-none d-md-block mb-0">Disfruta de la máxima potencia 4K y gatillos adaptativos.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <img src="https://images.unsplash.com/photo-1621259182978-fbf93132d53d?q=80&w=1200&auto=format&fit=crop"
+                            class="d-block w-100 carousel-img" alt="Xbox Series X y mando inalámbrico">
+                        <div class="carousel-caption d-block bg-dark bg-opacity-75 rounded-3 p-3">
+                            <h3 class="fw-bold text-neon">Xbox Series X</h3>
+                            <p class="d-none d-md-block mb-0">La consola más potente de Microsoft lista para el juego competitivo.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <img src="https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?q=80&w=1200&auto=format&fit=crop"
+                            class="d-block w-100 carousel-img" alt="Setup Gaming y Consolas">
+                        <div class="carousel-caption d-block bg-dark bg-opacity-75 rounded-3 p-3">
+                            <h3 class="fw-bold text-neon">Accesorios ProPlay</h3>
+                            <p class="d-none d-md-block mb-0">Lleva tu rendimiento al siguiente nivel con hardware de vanguardia.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controles Anterior / Siguiente -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carruselVideojuegos"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-label="Anterior"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carruselVideojuegos"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-label="Siguiente"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. SECCIÓN PRINCIPAL: PRODUCTOS DESTACADOS
+             Sistema de Cuadrícula (Grid) y Tarjetas (Cards)
+             ========================================== -->
+        <section id="productos" class="container my-5">
+            <div class="section-wrapper p-4 p-md-5 rounded-4">
+                <h2 class="text-center text-uppercase fw-bold mb-4 section-title">Productos destacados</h2>
+
+                <!-- Cuadrícula responsiva de Bootstrap (col-12 en móviles, col-sm-6 en tabletas, col-lg-3 en desktop) -->
+                <div class="row g-4">
+                    
+                    <!-- Producto 1: Consola PlayStation 5 -->
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
+                        <div class="card product-card w-100 position-relative">
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-3 fs-6">¡OFERTA!</span>
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1679813553141-5621567f95e8?q=80&w=435&auto=format&fit=crop"
+                                    class="card-img-top p-3" alt="Consola PlayStation 5">
+                            </div>
+                            <div class="card-body d-flex flex-column text-center">
+                                <h3 class="card-title h5 text-neon">Consola PlayStation 5</h3>
+                                <p class="card-text text-secondary flex-grow-1">Consola de última generación con soporte para resolución 4K.</p>
+                                <a href="#contacto" class="btn btn-outline-neon mt-2">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2: Xbox Series X -->
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
+                        <div class="card product-card w-100">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1683823362932-6f7599661d22?q=80&w=387&auto=format&fit=crop"
+                                    class="card-img-top p-3" alt="Consola Xbox Series X">
+                            </div>
+                            <div class="card-body d-flex flex-column text-center">
+                                <h3 class="card-title h5 text-neon">Xbox Series X</h3>
+                                <p class="card-text text-secondary flex-grow-1">La consola más potente de Microsoft con 12 Teraflops de procesamiento.</p>
+                                <a href="#contacto" class="btn btn-outline-neon mt-2">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3: Nintendo Switch OLED -->
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
+                        <div class="card product-card w-100">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1612036781124-847f8939b154?q=80&w=870&auto=format&fit=crop"
+                                    class="card-img-top p-3" alt="Consola Nintendo Switch OLED">
+                            </div>
+                            <div class="card-body d-flex flex-column text-center">
+                                <h3 class="card-title h5 text-neon">Nintendo Switch OLED</h3>
+                                <p class="card-text text-secondary flex-grow-1">Consola híbrida portátil y de sobremesa con pantalla OLED de 7 pulgadas.</p>
+                                <a href="#contacto" class="btn btn-outline-neon mt-2">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4: Prótesis Magic Hands ProPlay -->
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
+                        <div class="card product-card featured-product w-100 position-relative">
+                            <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3 fs-6">PRO</span>
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=387&auto=format&fit=crop"
+                                    class="card-img-top p-3" alt="Prótesis Magic Hands ProPlay">
+                            </div>
+                            <div class="card-body d-flex flex-column text-center">
+                                <h3 class="card-title h5 text-neon">Prótesis Magic Hands ProPlay</h3>
+                                <p class="card-text text-secondary flex-grow-1">Prótesis avanzadas ergonómicas para un rendimiento excepcional en el juego.</p>
+                                <a href="#contacto" class="btn btn-neon mt-2">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer id="contacto">
-        <p>Dirección de contacto: contacto@carlosduty.com</p>
-        <p>Teléfono: +56 9 1234 5678</p>
-        <p>Síguenos en nuestras redes sociales:</p>
-        <ul>
-            <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
-            <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
-            <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
-        </ul>
-        <p>&copy; 2026 Carlos's Duty - Todos los derechos reservados.</p>
+    <!-- ==========================================
+         4. PIE DE PÁGINA (FOOTER RESPONSIVO)
+         ========================================== -->
+    <footer id="contacto" class="custom-footer py-5 mt-auto">
+        <div class="container text-center">
+            <div class="row gy-3 justify-content-center">
+                <div class="col-12 col-md-4">
+                    <p class="mb-1"><i class="bi bi-envelope-fill me-2 text-neon"></i>contacto@carlosduty.com</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <p class="mb-1"><i class="bi bi-telephone-fill me-2 text-neon"></i>+56 9 1234 5678</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="social-links d-flex justify-content-center gap-3">
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="bi bi-facebook me-1"></i>Facebook
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="bi bi-instagram me-1"></i>Instagram
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="bi bi-twitter-x me-1"></i>Twitter
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 border-secondary opacity-50">
+
+            <p class="copyright-text mb-0">&copy; 2026 Carlos's Duty - Todos los derechos reservados.</p>
+        </div>
     </footer>
 
+    <!-- Bootstrap 5 JavaScript Bundle con Popper CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
