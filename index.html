@@ -10,10 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Bootstrap Icons (Opcional para mejorar la interfaz visual) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -23,11 +21,11 @@
          1. BARRA DE NAVEGACIÓN (NAVBAR RESPONSIVA)
          ========================================== -->
     <header id="inicio">
-        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top" aria-label="Navegación principal">
             <div class="container">
                 <!-- Marca / Logo -->
                 <a class="navbar-brand text-uppercase fw-bold brand-logo" href="#inicio">
-                    <i class="bi bi-controller me-2 text-neon"></i>Carlos's Duty
+                    <i class="bi bi-controller me-2 text-neon" aria-hidden="true"></i>Carlos's Duty
                 </a>
 
                 <!-- Botón hamburguesa para dispositivos móviles -->
@@ -38,13 +36,26 @@
                 </button>
 
                 <!-- Enlaces del menú colapsable -->
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavegacion">
-                    <ul class="navbar-nav mb-2 mb-lg-0 gap-lg-2">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavegacion">
+                    <ul class="navbar-nav mb-2 mb-lg-0 gap-lg-2 ms-lg-3">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#carrusel-promos">Novedades</a>
+                        </li>
+                        <!-- Categorías simuladas en Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategorias" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorías
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownCategorias">
+                                <li><a class="dropdown-item" href="#productos"><i class="bi bi-controller me-2"></i>Consolas</a></li>
+                                <li><a class="dropdown-item" href="#productos"><i class="bi bi-disc me-2"></i>Videojuegos</a></li>
+                                <li><a class="dropdown-item" href="#productos"><i class="bi bi-headset me-2"></i>Accesorios</a></li>
+                                <li><hr class="dropdown-divider border-secondary"></li>
+                                <li><a class="dropdown-item" href="#contenedor-catalogo-fetch"><i class="bi bi-gift me-2"></i>Tarjetas & Digital</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#productos">Productos</a>
@@ -52,13 +63,29 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contacto">Contacto</a>
                         </li>
-                        <li class="nav-item d-flex align-items-center ms-lg-2 mt-2 mt-lg-0">
-                            <a href="#productos" class="btn btn-outline-neon btn-sm position-relative" title="Carrito de Compras">
-                                <i class="bi bi-cart-fill"></i>
-                                <span id="contador-carrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
-                            </a>
-                        </li>
                     </ul>
+
+                    <!-- Formulario de búsqueda (Evento submit) y botón del Carrito -->
+                    <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-2 mt-2 mt-lg-0">
+                        <form id="form-busqueda" class="d-flex gap-2" role="search" aria-label="Búsqueda de productos">
+                            <input class="form-control form-control-sm bg-dark text-light border-secondary" 
+                                   type="search" id="input-busqueda" placeholder="Buscar videojuegos, consolas..." 
+                                   aria-label="Término de búsqueda de productos" maxlength="60" autocomplete="off" required>
+                            <button class="btn btn-outline-neon btn-sm d-flex align-items-center gap-1" type="submit" aria-label="Ejecutar búsqueda">
+                                <i class="bi bi-search" aria-hidden="true"></i>
+                                <span class="d-none d-sm-inline">Buscar</span>
+                            </button>
+                        </form>
+
+                        <!-- Botón para abrir el panel del Carrito de Compras -->
+                        <button type="button" id="btn-abrir-carrito" class="btn btn-outline-neon btn-sm position-relative d-flex align-items-center justify-content-center px-3 py-1"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito"
+                            aria-label="Ver carrito de compras">
+                            <i class="bi bi-cart-fill me-1" aria-hidden="true"></i>
+                            <span class="d-inline">Carrito</span>
+                            <span id="contador-carrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -77,7 +104,7 @@
              2. CARRUSEL DE IMÁGENES (CAROUSEL BOOTSTRAP 5)
              Transición automática cada 3 segundos (3000 ms)
              ========================================== -->
-        <section id="carrusel-promos" class="container my-4">
+        <section id="carrusel-promos" class="container my-4" aria-label="Carrusel de promociones destacadas">
             <div id="carruselVideojuegos" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden"
                 data-bs-ride="carousel">
                 <!-- Indicadores inferiores -->
@@ -122,14 +149,12 @@
 
                 <!-- Controles Anterior / Siguiente -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carruselVideojuegos"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-label="Anterior"></span>
-                    <span class="visually-hidden">Anterior</span>
+                    data-bs-slide="prev" aria-label="Diapositiva anterior">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carruselVideojuegos"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-label="Siguiente"></span>
-                    <span class="visually-hidden">Siguiente</span>
+                    data-bs-slide="next" aria-label="Siguiente diapositiva">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 </button>
             </div>
         </section>
@@ -137,73 +162,107 @@
         <!-- 
              3. SECCIÓN PRINCIPAL: PRODUCTOS DESTACADOS
              Sistema de Cuadrícula (Grid) y Tarjetas (Cards)-->
-        <section id="productos" class="container my-5">
+        <section id="productos" class="container my-5" aria-labelledby="titulo-productos">
             <div class="section-wrapper p-4 p-md-5 rounded-4">
-                <h2 class="text-center text-uppercase fw-bold mb-4 section-title">Productos destacados</h2>
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                    <h2 id="titulo-productos" class="text-uppercase fw-bold m-0 section-title">Productos destacados</h2>
+                    
+                    <!-- Botón para resetear filtros si se ha buscado -->
+                    <button id="btn-mostrar-todos" class="btn btn-sm btn-outline-secondary d-none" type="button">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i>Mostrar todos los productos
+                    </button>
+                </div>
+
+                <!-- Mensaje de estado de búsqueda / alerta de resultados -->
+                <div id="alerta-busqueda" class="d-none mb-4" role="status" aria-live="polite"></div>
 
                 <!-- Cuadrícula responsiva de Bootstrap (col-12 en móviles, col-sm-6 en tabletas, col-lg-3 en desktop) -->
-                <div class="row g-4">
+                <div id="contenedor-productos-estaticos" class="row g-4">
                     
                     <!-- Producto 1: Consola PlayStation 5 -->
-                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
-                        <div class="card product-card w-100 position-relative">
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch item-producto" 
+                         data-id="prod-1" data-titulo="Consola PlayStation 5" data-categoria="Consolas / PlayStation" data-precio="499990" data-imagen="https://images.unsplash.com/photo-1679813553141-5621567f95e8?q=80&w=435&auto=format&fit=crop">
+                        <article class="card product-card w-100 position-relative h-100">
                             <span class="badge bg-danger position-absolute top-0 end-0 m-3 fs-6">¡OFERTA!</span>
                             <div class="card-img-wrapper">
                                 <img src="https://images.unsplash.com/photo-1679813553141-5621567f95e8?q=80&w=435&auto=format&fit=crop"
-                                    class="card-img-top p-3" alt="Consola PlayStation 5">
+                                    class="card-img-top p-3" alt="Consola PlayStation 5" loading="lazy">
                             </div>
                             <div class="card-body d-flex flex-column text-center">
+                                <span class="badge bg-dark text-info mb-2 align-self-center">Consolas</span>
                                 <h3 class="card-title h5 text-neon">Consola PlayStation 5</h3>
                                 <p class="card-text text-secondary flex-grow-1">Consola de última generación con soporte para resolución 4K.</p>
-                                <button type="button" class="btn btn-outline-neon mt-2"><i class="bi bi-cart-plus me-1"></i> Agregar al carrito</button>
+                                <p class="fw-bold text-light fs-5 mb-2">$499.990</p>
+                                <button type="button" class="btn btn-outline-neon mt-auto btn-agregar-carrito" 
+                                    aria-label="Agregar Consola PlayStation 5 al carrito">
+                                    <i class="bi bi-cart-plus me-1" aria-hidden="true"></i> Agregar al carrito
+                                </button>
                             </div>
-                        </div>
+                        </article>
                     </div>
 
                     <!-- Producto 2: Xbox Series X -->
-                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
-                        <div class="card product-card w-100">
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch item-producto" 
+                         data-id="prod-2" data-titulo="Xbox Series X" data-categoria="Consolas / Xbox" data-precio="479990" data-imagen="https://images.unsplash.com/photo-1683823362932-6f7599661d22?q=80&w=387&auto=format&fit=crop">
+                        <article class="card product-card w-100 h-100">
                             <div class="card-img-wrapper">
                                 <img src="https://images.unsplash.com/photo-1683823362932-6f7599661d22?q=80&w=387&auto=format&fit=crop"
-                                    class="card-img-top p-3" alt="Consola Xbox Series X">
+                                    class="card-img-top p-3" alt="Consola Xbox Series X" loading="lazy">
                             </div>
                             <div class="card-body d-flex flex-column text-center">
+                                <span class="badge bg-dark text-info mb-2 align-self-center">Consolas</span>
                                 <h3 class="card-title h5 text-neon">Xbox Series X</h3>
                                 <p class="card-text text-secondary flex-grow-1">La consola más potente de Microsoft con 12 Teraflops de procesamiento.</p>
-                                <button type="button" class="btn btn-outline-neon mt-2"><i class="bi bi-cart-plus me-1"></i> Agregar al carrito</button>
+                                <p class="fw-bold text-light fs-5 mb-2">$479.990</p>
+                                <button type="button" class="btn btn-outline-neon mt-auto btn-agregar-carrito" 
+                                    aria-label="Agregar Xbox Series X al carrito">
+                                    <i class="bi bi-cart-plus me-1" aria-hidden="true"></i> Agregar al carrito
+                                </button>
                             </div>
-                        </div>
+                        </article>
                     </div>
 
                     <!-- Producto 3: Nintendo Switch OLED -->
-                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
-                        <div class="card product-card w-100">
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch item-producto" 
+                         data-id="prod-3" data-titulo="Nintendo Switch OLED" data-categoria="Consolas / Nintendo" data-precio="329990" data-imagen="https://images.unsplash.com/photo-1612036781124-847f8939b154?q=80&w=870&auto=format&fit=crop">
+                        <article class="card product-card w-100 h-100">
                             <div class="card-img-wrapper">
                                 <img src="https://images.unsplash.com/photo-1612036781124-847f8939b154?q=80&w=870&auto=format&fit=crop"
-                                    class="card-img-top p-3" alt="Consola Nintendo Switch OLED">
+                                    class="card-img-top p-3" alt="Consola Nintendo Switch OLED" loading="lazy">
                             </div>
                             <div class="card-body d-flex flex-column text-center">
+                                <span class="badge bg-dark text-info mb-2 align-self-center">Consolas</span>
                                 <h3 class="card-title h5 text-neon">Nintendo Switch OLED</h3>
                                 <p class="card-text text-secondary flex-grow-1">Consola híbrida portátil y de sobremesa con pantalla OLED de 7 pulgadas.</p>
-                                <button type="button" class="btn btn-outline-neon mt-2"><i class="bi bi-cart-plus me-1"></i> Agregar al carrito</button>
+                                <p class="fw-bold text-light fs-5 mb-2">$329.990</p>
+                                <button type="button" class="btn btn-outline-neon mt-auto btn-agregar-carrito" 
+                                    aria-label="Agregar Nintendo Switch OLED al carrito">
+                                    <i class="bi bi-cart-plus me-1" aria-hidden="true"></i> Agregar al carrito
+                                </button>
                             </div>
-                        </div>
+                        </article>
                     </div>
 
                     <!-- Producto 4: Prótesis Magic Hands ProPlay -->
-                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch">
-                        <div class="card product-card featured-product w-100 position-relative">
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-stretch item-producto" 
+                         data-id="prod-4" data-titulo="Prótesis Magic Hands ProPlay" data-categoria="Accesorios / ProPlay" data-precio="89990" data-imagen="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=387&auto=format&fit=crop">
+                        <article class="card product-card featured-product w-100 position-relative h-100">
                             <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3 fs-6">PRO</span>
                             <div class="card-img-wrapper">
                                 <img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=387&auto=format&fit=crop"
-                                    class="card-img-top p-3" alt="Prótesis Magic Hands ProPlay">
+                                    class="card-img-top p-3" alt="Prótesis Magic Hands ProPlay" loading="lazy">
                             </div>
                             <div class="card-body d-flex flex-column text-center">
+                                <span class="badge bg-dark text-info mb-2 align-self-center">Accesorios</span>
                                 <h3 class="card-title h5 text-neon">Prótesis Magic Hands ProPlay</h3>
                                 <p class="card-text text-secondary flex-grow-1">Prótesis avanzadas ergonómicas para un rendimiento excepcional en el juego.</p>
-                                <button type="button" class="btn btn-outline-neon mt-2"><i class="bi bi-cart-plus me-1"></i> Agregar al carrito</button>
+                                <p class="fw-bold text-light fs-5 mb-2">$89.990</p>
+                                <button type="button" class="btn btn-outline-neon mt-auto btn-agregar-carrito" 
+                                    aria-label="Agregar Prótesis Magic Hands ProPlay al carrito">
+                                    <i class="bi bi-cart-plus me-1" aria-hidden="true"></i> Agregar al carrito
+                                </button>
                             </div>
-                        </div>
+                        </article>
                     </div>
 
                 </div>
@@ -214,23 +273,65 @@
                 <div class="mt-5 text-center">
                     <hr class="my-5 border-secondary opacity-50">
                     <h3 class="text-uppercase fw-bold text-neon mb-2">Catálogo Digital Online</h3>
-                    <p class="text-secondary mb-4">amplio catalogo de juegos digitales.</p>
+                    <p class="text-secondary mb-4">Amplio catálogo de juegos digitales cargados dinámicamente.</p>
                     
-                    <button id="btn-cargar-juegos" class="btn btn-neon px-4 py-2 mb-4">
-                        <i class="bi bi-cloud-arrow-down-fill me-2"></i>Cargar Catálogo Digital
+                    <button id="btn-cargar-juegos" class="btn btn-neon px-4 py-2 mb-4" type="button" aria-label="Cargar catálogo digital">
+                        <i class="bi bi-cloud-arrow-down-fill me-2" aria-hidden="true"></i>Cargar Catálogo Digital
                     </button>
 
-                    <!-- Spinner de carga -->
+                    <!-- Spinner de carga accesible -->
                     <div id="fetch-spinner" class="spinner-border text-neon d-none mb-3" role="status">
-                        <span class="visually-hidden">Cargando datos...</span>
+                        <span class="visually-hidden">Cargando datos del catálogo...</span>
                     </div>
 
                     <!-- Contenedor donde se insertan los elementos dinámicamente -->
-                    <div id="contenedor-catalogo-fetch" class="row g-4 text-start"></div>
+                    <div id="contenedor-catalogo-fetch" class="row g-4 text-start" aria-live="polite"></div>
                 </div>
 
             </div>
         </section>
+
+        <!-- ==========================================
+             ÁREA DESIGNADA: OFFCANVAS / RESUMEN DEL CARRITO DE COMPRAS
+             ========================================== -->
+        <aside class="offcanvas offcanvas-end bg-dark text-light border-start border-secondary" tabindex="-1" 
+               id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+            <div class="offcanvas-header border-bottom border-secondary">
+                <h2 class="offcanvas-title h5 text-neon d-flex align-items-center gap-2 m-0" id="offcanvasCarritoLabel">
+                    <i class="bi bi-cart3 text-neon" aria-hidden="true"></i>
+                    Carrito de Compras
+                </h2>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito"></button>
+            </div>
+            
+            <div class="offcanvas-body d-flex flex-column p-3">
+                <!-- Lista dinámica de productos agregados -->
+                <div id="lista-carrito" class="flex-grow-1 overflow-y-auto mb-3" aria-live="polite">
+                    <!-- Se inyecta dinámicamente con JavaScript -->
+                </div>
+
+                <!-- Resumen y acciones del carrito -->
+                <div id="resumen-carrito" class="border-top border-secondary pt-3 mt-auto">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary">Cantidad de productos:</span>
+                        <strong id="resumen-cantidad" class="text-light fs-6">0 unidades</strong>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-light fw-semibold fs-5">Total a pagar:</span>
+                        <span id="resumen-total" class="text-neon fw-bold fs-4">$0</span>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button id="btn-finalizar-compra" class="btn btn-neon py-2 fw-bold" type="button" disabled>
+                            <i class="bi bi-credit-card-fill me-2" aria-hidden="true"></i>Finalizar Compra
+                        </button>
+                        <button id="btn-vaciar-carrito" class="btn btn-outline-danger btn-sm" type="button" disabled>
+                            <i class="bi bi-trash3-fill me-1" aria-hidden="true"></i>Vaciar Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
     </main>
 
     <!-- 4. PIE DE PÁGINA (FOOTER RESPONSIVO)-->
@@ -242,23 +343,50 @@
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="card p-4 shadow-lg text-start" style="background-color: var(--bg-principal); border: var(--border-thin);">
                         <h3 class="h4 text-neon mb-3 text-center"><i class="bi bi-envelope-paper-fill me-2"></i>Envíanos un Mensaje</h3>
-                        <form id="form-contacto">
+                        <form id="form-contacto" novalidate>
                             <div class="mb-3">
-                                <label for="nombreContacto" class="form-label text-light">Nombre</label>
-                                <input type="text" class="form-control bg-dark text-light border-secondary" id="nombreContacto" placeholder="Tu nombre" required>
+                                <label for="nombreContacto" class="form-label text-light fw-semibold">Nombre Completo</label>
+                                <input type="text" class="form-control bg-dark text-light border-secondary" id="nombreContacto" 
+                                       placeholder="Ej: Carlos Silva" minlength="3" maxlength="50" required
+                                       aria-describedby="nombreAyuda feedbackNombre">
+                                <div id="nombreAyuda" class="form-text text-secondary small">
+                                    <i class="bi bi-info-circle me-1"></i>Debe ingresar su nombre completo (solo letras y espacios, entre 3 y 50 caracteres).
+                                </div>
+                                <div id="feedbackNombre" class="invalid-feedback">
+                                    Por favor ingrese un nombre válido (solo letras, de 3 a 50 caracteres).
+                                </div>
                             </div>
+
                             <div class="mb-3">
-                                <label for="emailContacto" class="form-label text-light">Correo Electrónico</label>
-                                <input type="email" class="form-control bg-dark text-light border-secondary" id="emailContacto" placeholder="nombre@correo.com" required>
+                                <label for="emailContacto" class="form-label text-light fw-semibold">Correo Electrónico</label>
+                                <input type="email" class="form-control bg-dark text-light border-secondary" id="emailContacto" 
+                                       placeholder="nombre@correo.com" maxlength="100" required
+                                       aria-describedby="emailAyuda feedbackEmail">
+                                <div id="emailAyuda" class="form-text text-secondary small">
+                                    <i class="bi bi-info-circle me-1"></i>Debe ingresar un correo electrónico válido (máximo 100 caracteres).
+                                </div>
+                                <div id="feedbackEmail" class="invalid-feedback">
+                                    Por favor ingrese una dirección de correo electrónico válida.
+                                </div>
                             </div>
+
                             <div class="mb-3">
-                                <label for="mensajeContacto" class="form-label text-light">Mensaje o Consulta</label>
-                                <textarea class="form-control bg-dark text-light border-secondary" id="mensajeContacto" rows="3" placeholder="Escribe tu consulta aquí..." required></textarea>
+                                <label for="mensajeContacto" class="form-label text-light fw-semibold">Mensaje o Consulta</label>
+                                <textarea class="form-control bg-dark text-light border-secondary" id="mensajeContacto" 
+                                          rows="3" placeholder="Escribe tu consulta aquí..." minlength="10" maxlength="500" required
+                                          aria-describedby="mensajeAyuda feedbackMensaje"></textarea>
+                                <div id="mensajeAyuda" class="form-text text-secondary small">
+                                    <i class="bi bi-info-circle me-1"></i>Escriba el detalle de su consulta (entre 10 y 500 caracteres).
+                                </div>
+                                <div id="feedbackMensaje" class="invalid-feedback">
+                                    El mensaje debe tener entre 10 y 500 caracteres.
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-neon w-100">
+
+                            <button type="submit" class="btn btn-neon w-100 fw-bold py-2">
                                 <i class="bi bi-send-fill me-2"></i>Enviar Mensaje
                             </button>
-                            <div id="mensaje-formulario" class="d-none"></div>
+                            <div id="mensaje-formulario" class="d-none mt-3" role="status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>

@@ -77,10 +77,32 @@ body {
 }
 
 .custom-navbar .nav-link:hover,
-.custom-navbar .nav-link.active {
+.custom-navbar .nav-link.active,
+.custom-navbar .nav-link.show {
     color: var(--negro-absoluto) !important;
     background-color: var(--verde-neon);
     box-shadow: 0 0 10px var(--sombra-verde);
+}
+
+.custom-navbar .dropdown-menu-dark {
+    background-color: var(--bg-tarjeta);
+    border: var(--border-thin);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+    padding: 0.5rem;
+}
+
+.custom-navbar .dropdown-menu-dark .dropdown-item {
+    color: var(--plata);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.custom-navbar .dropdown-menu-dark .dropdown-item:hover {
+    background-color: var(--verde-neon);
+    color: var(--negro-absoluto);
+    font-weight: 600;
 }
 
 .navbar-toggler {
@@ -258,8 +280,63 @@ body {
 }
 
 /* ==========================================
-   7. AJUSTES RESPONSIVOS COMPLEMENTARIOS
+   7. PANEL DEL CARRITO DE COMPRAS (OFFCANVAS)
    ========================================== */
+.offcanvas {
+    max-width: 420px;
+}
+
+#lista-carrito::-webkit-scrollbar {
+    width: 6px;
+}
+
+#lista-carrito::-webkit-scrollbar-track {
+    background: #121418;
+}
+
+#lista-carrito::-webkit-scrollbar-thumb {
+    background: var(--borde-plata);
+    border-radius: 3px;
+}
+
+#lista-carrito::-webkit-scrollbar-thumb:hover {
+    background: var(--verde-neon);
+}
+
+/* ==========================================
+   8. ESTILOS DE VALIDACIÓN Y FORMULARIOS
+   ========================================== */
+.form-control.is-valid,
+.was-validated .form-control:valid {
+    border-color: var(--verde-neon) !important;
+    box-shadow: 0 0 6px var(--sombra-verde-suave);
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 6px rgba(255, 77, 77, 0.25);
+}
+
+.invalid-feedback {
+    color: #ff6b6b !important;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.form-text {
+    font-size: 0.82rem;
+    color: var(--plata-oscuro) !important;
+}
+
+/* ==========================================
+   9. AJUSTES RESPONSIVOS Y ACCESIBILIDAD
+   ========================================== */
+:focus-visible {
+    outline: 2px solid var(--verde-neon);
+    outline-offset: 2px;
+}
+
 @media (max-width: 768px) {
     .carousel-img {
         height: 250px;
@@ -267,5 +344,13 @@ body {
 
     .hero-banner h1 {
         font-size: 1.8rem;
+    }
+
+    .offcanvas {
+        max-width: 100%;
+    }
+
+    #form-busqueda input {
+        min-width: 0;
     }
 }
